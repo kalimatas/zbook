@@ -1,5 +1,14 @@
 #SetEnv APPLICATION_EVN development
 
+<Files .htpasswd>
+    deny from all
+</Files>
+
+AuthName "Access"
+AuthType Basic
+Require valid-user
+AuthUserFile "/srv/http/zbook/public/.htpasswd"
+
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-s [OR]
