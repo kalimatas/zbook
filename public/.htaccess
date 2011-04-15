@@ -1,19 +1,7 @@
-#SetEnv APPLICATION_EVN development
-
-#<Files .htpasswd>
-    #deny from all
-#</Files>
-
-#AuthName "Access"
-#AuthType Basic
-#Require valid-user
-#AuthUserFile "/srv/http/zbook/public/.htpasswd"
 
 RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-s [OR]
-RewriteCond %{REQUEST_FILENAME} !-l [OR]
-RewriteCond %{REQUEST_FILENAME} !-d 
-
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
-RewriteRule ^.*$ /index.php [NC,L]
+RewriteRule ^.*$ index.php [NC,L]

@@ -24,8 +24,11 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
                 $options['resources']['view']['contentType']);
         }
 
+        $view->headTitle()->setSeparator(' / ')->append('zbook');
+
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRenderer->setView($view);
+        
         return $view;
     }
 
@@ -36,12 +39,14 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         }
 
         $this->bootstrap('FrontController');
-        $front = $this->getResource('FrontController');
-        //$front->registerPlugin(new Zend_Controller_Plugin_ErrorHandler());
+        if ($this->hasResource('FrontController')) {
+            $front = $this->getResource('FrontController');
+        }
         $response = new Zend_Controller_Response_Http;
         $response->setHeader('Content-type',
             $options['resources']['modifiedFrontController']['contentType']);
         $front->setResponse($response);
+
     }
 }
 
