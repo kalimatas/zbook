@@ -14,11 +14,9 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         } else {
             $view = new Zend_View;
         }
-
         if (isset($options['resources']['view']['doctype'])) {
             $view->doctype($options['resources']['view']['doctype']);
         }
-
         if (isset($options['resources']['view']['contentType'])) {
             $view->headMeta()->appendHttpEquiv('Content-Type',
                 $options['resources']['view']['contentType']);
