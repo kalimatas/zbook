@@ -21,6 +21,7 @@
     }
 
 
+    // set include path
     set_include_path(APPLICATION_ROOT . '/library' . 
         PATH_SEPARATOR . APPLICATION_ROOT . '/vendor' . 
         PATH_SEPARATOR . get_include_path());
