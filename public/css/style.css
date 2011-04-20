@@ -3,6 +3,7 @@
  */
 body {
     font-family: Geneva, Verdana, Helvetica, sans-serif;
+    margin: 0;
 }
 a:link, a:visited {
     color: blue;
@@ -31,8 +32,18 @@ header#hd {
 footer#ft {
     text-align: center;
     margin-top: 25px;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+    /*border-top: 1px solid lightgray;*/
+    /*border-bottom: 1px solid lightgray;*/
+    background-color: #2b2b2b;
+    color: white;
+    line-height: 30px;
+}
+footer#ft a{
+    color: white;
+}
+footer#ft p {
+    margin: 0;
+    padding: 0;
 }
 section#content {
     border-left: 3px double lightgray;
@@ -58,29 +69,30 @@ header#hd h2 {
  * Horizontal Header Navigation Menu
  */
 header#hd nav {
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    /*border-top: 2px solid #000;*/
+    /*border-bottom: 2px solid #000;*/
+    background-color: #2b2b2b;
+    line-height: 16px;
 }
 header#hd nav ul {
     list-style: none;
     margin: 0 0 0 20px;
-    text-align: left;
 }
-header#hd nav li
-{
+header#hd nav li {
     display: inline-block;
     min-width: 50px;
     margin: 0 2px 0 2px;
 }
 header#hd nav a:link, nav a:visited {
-    color: blue;
+    color: white;
     display: inline-block;
     height: 20px;
     padding: 5px 1.5em;
+    font-size: 11px;
     text-decoration: none;
 }
 header#hd nav a:hover {
-    background-color: lightgray;
+    text-decoration: underline;
 }
 
 /**
