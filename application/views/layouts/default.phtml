@@ -13,9 +13,14 @@
 </head>
 
 <body>
-<header>
-    <h1><a href="/">ZF Blog</a></h1>
-    <nav>
+<div id="doc" class="yui-t1">
+
+<header id="hd" role="banner">
+    <hgroup>
+        <h1><a href="/">ZF Blog</a></h1>
+        <h2>Some subheader here.</h2>
+    </hgroup>
+    <nav role="navigation">
     	<ul>
     		<li> <a href="/">Home</a> </li>
     		<li> <a href="#">About</a> </li>
@@ -25,14 +30,35 @@
     </nav>
 </header>
 
-<section>
-<?php echo $this->layout()->content; ?>
-</section>
+<div id="bd">
+    <div id="yui-main">
+        <div class="yui-b" role="main">
+            <section id="content" class="yui-g">
+            <?php echo $this->layout()->content; ?>
+            </section>
+        </div>
+    </div>
+    <section class="yui-b">
+        <nav role="navigation" aria-labelledby="leftnav-label">
+            <h2 id="leftnav-label">External Links</h2>
+            <ul>
+                <li><a href="#">Survive The Deep End</a></li>
+                <li><a href="#">Zend Framework</a></li>
+                <li><a href="#">Planet-PHP</a></li>
+                <li><a href="#">I'm on Twitter!</a></li>
+            </ul>
+        </nav>
+    </section>
 
-<footer>
+
+</div>
+
+<footer id="ft" role="contentinfo">
     <p>Coopyright &copy; 2011 ZF Blog</p>
     <p>Powered by <a href="http://www.vim.org/">Gvim</a></p>
 </footer>
+
+</div>
 
 </body>
 </html>
