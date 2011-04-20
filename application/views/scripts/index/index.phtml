@@ -1,13 +1,61 @@
-<?php echo $this->doctype(); ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <?php echo $this->headMeta(); ?>
     <meta name="language" content="en" />
-    <?php echo $this->headTitle(); ?>
+    <meta charset="utf-8" />
+    <title>ZF Blog</title>
+    <link href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://yui.yahooapis.com/2.7.0/build/base/base-min.css" media="screen" rel="stylesheet" type="text/css" /> 
+    <!--[if IE]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 
 <body>
-    <h3>Hello Zend!</h3>
+<header>
+    <h1><a href="/">ZF Blog</a></h1>
+    <nav>
+    	<ul>
+    		<li> <a href="/">Home</a> </li>
+    		<li> <a href="#">About</a> </li>
+    		<li> <a href="#">Projects</a> </li>
+    		<li> <a href="#">Contact</a> </li>
+    	</ul>
+    </nav>
+</header>
+
+<section>
+    <article>
+        <header>
+            <h2>One day</h2>
+            <p>Posted on <time datetime="2011-20-04">Wednesday, 20 April 2011</time></p>
+        </header>
+        <div>
+            <p>Some text.</p>
+            <p>Second line here.</p>
+        </div>
+        <footer>
+            <address>By kalimatas</address>
+        </footer>
+    </article>
+
+    <article>
+        <header>
+            <h2>One day</h2>
+            <p>Posted on <time datetime="2011-20-04">Wednesday, 20 April 2011</time></p>
+        </header>
+        <div>
+            <p>Some text.</p>
+            <p>Second line here.</p>
+        </div>
+        <footer>
+            <address>By kalimatas</address>
+        </footer>
+    </article>
+</section>
+
+<footer>
+    <p>Coopyright &copy; 2011 ZF Blog</p>
+    <p>Powered by <a href="http://www.vim.org/">Gvim</a></p>
+</footer>
+
 </body>
 </html>
