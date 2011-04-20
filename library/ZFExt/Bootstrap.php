@@ -8,21 +8,26 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     protected function _initView() {
         $options = $this->getOptions();
         //Zend_Debug::dump($options);
-
-        if (isset($options['resources']['view'])) {
-            $view = new Zend_View($options['resources']['view']);
+        $config = $options['resources']['view'];
+        
+        if (isset($config)) {
+            $view = new Zend_View($config);
         } else {
             $view = new Zend_View;
         }
-        if (isset($options['resources']['view']['doctype'])) {
-            $view->doctype($options['resources']['view']['doctype']);
-        }
-        if (isset($options['resources']['view']['contentType'])) {
-            $view->headMeta()->appendHttpEquiv('Content-Type',
-                $options['resources']['view']['contentType']);
+
+        if (isset($config['doctype'])) {
+            $view->doctype($config['doctype']);
         }
 
-        $view->headTitle()->setSeparator(' / ')->append('zbook');
+        if (isset($config['contentType'])) {
+            $view->headMeta()->appendHttpEquiv('Content-Type',
+                $config['contentType']);
+        }
+
+        if (isset($config['language'])) {
+            $view->headMeta()->appendName('language', $config['language']);
+        }
 
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRenderer->setView($view);

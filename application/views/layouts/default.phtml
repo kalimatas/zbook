@@ -1,0 +1,38 @@
+<?php echo $this->doctype() . "\n" ?>
+<html>
+<head>
+<?php 
+    echo $this->headTitle('ZF Blog')->setSeparator(' / ')->setIndent('   ') . "\n";
+    echo $this->headMeta()->setIndent('   ') . "\n"; 
+    echo $this->headLink()->setIndent('   ')
+         ->appendStylesheet('http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css')
+         ->appendStylesheet('http://yui.yahooapis.com/2.7.0/build/base/base-min.css')
+         ->appendStylesheet($this->includeModifiedDate('/css/style.css')) . "\n";
+    echo $this->headScript()->prependFile('http://html5shiv.googlecode.com/svn/trunk/html5.js','text/javascript',array('conditional'=>'IE')). "\n";
+?>
+</head>
+
+<body>
+<header>
+    <h1><a href="/">ZF Blog</a></h1>
+    <nav>
+    	<ul>
+    		<li> <a href="/">Home</a> </li>
+    		<li> <a href="#">About</a> </li>
+    		<li> <a href="#">Projects</a> </li>
+    		<li> <a href="#">Contact</a> </li>
+    	</ul>
+    </nav>
+</header>
+
+<section>
+<?php echo $this->layout()->content; ?>
+</section>
+
+<footer>
+    <p>Coopyright &copy; 2011 ZF Blog</p>
+    <p>Powered by <a href="http://www.vim.org/">Gvim</a></p>
+</footer>
+
+</body>
+</html>
