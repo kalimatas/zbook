@@ -112,6 +112,9 @@ section nav ul li
     display: inline;
     margin: 0;
 }
+ul.leftnav li a{
+    color: blue;
+}
 
 /**
  * Article related styling
