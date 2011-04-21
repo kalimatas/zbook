@@ -35,6 +35,13 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         return $view;
     }
 
+    protected function _initDb() {
+        $resource = $this->getPluginResource('db');
+        $db = $resource->getDbAdapter();
+
+        Zend_Registry::set('db', $db);
+    }
+
     protected function _initModifiedFrontController() {
         $options = $this->getOptions();
         if (!isset($options['resources']['modifiedFrontController']['contentType'])) {
