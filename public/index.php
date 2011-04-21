@@ -25,12 +25,21 @@
     //PATH_SEPARATOR . APPLICATION_ROOT . '/application/models' . 
     set_include_path(APPLICATION_ROOT . '/library' . 
         PATH_SEPARATOR . APPLICATION_ROOT . '/vendor' . 
+        PATH_SEPARATOR . APPLICATION_ROOT . '/application/models' . 
         PATH_SEPARATOR . get_include_path());
 
     require_once 'Zend/Loader/Autoloader.php'; 
     $autoloader = Zend_Loader_Autoloader::getInstance();
-    $autoloader->setDefaultAutoloader(create_function('$class', 
-        "include str_replace('_','/', \$class) . '.php';"));
+    $autoloader->setFallbackAutoloader(true); 
+
+    function autoload($class) {
+        include str_replace('_','/', $class) . '.php';
+    }
+
+    //$autoloader->setDefaultAutoloader(create_function('$class', 
+        //"include str_replace('_','/', \$class) . '.php';"));
+    
+    //$autoloader->setDefaultAutoloader('autoload');
 
     $application = new Zend_Application(
         APPLICATION_ENV, 
