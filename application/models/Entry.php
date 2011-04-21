@@ -9,9 +9,10 @@ class Entry extends Zend_Db_Table {
      * Fetch latest entries
      */
     public function fetchLatest($count = 10) {
-        //$db = Zend_Registry::get('db');
-        //$db->setFetchMode(Zend_Db::FETCH_ASSOC);
-        return $this->fetchAll(null, 'date DESC', $count);
+        $entries = $this->fetchAll(null, 'date DESC', $count);
+        //$entries = $this->find('id = 1');
+        //$entries = $this->fetchRow('id = 1');
+        return $entries->toArray();
     }
 }
 ?>
