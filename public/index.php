@@ -1,8 +1,4 @@
 <?php
-    //require_once realpath('..') . '/library/ZFExt/Bootstrap.php';
-
-    //Bootstrap::run();
-
     if (!defined('APPLICATION_PATH')) {
         define('APPLICATION_PATH', realpath(dirname(__FILE__).'/../application'));
     }
@@ -22,7 +18,6 @@
 
 
     // set include path
-    //PATH_SEPARATOR . APPLICATION_ROOT . '/application/models' . 
     set_include_path(APPLICATION_ROOT . '/library' . 
         PATH_SEPARATOR . APPLICATION_ROOT . '/vendor' . 
         PATH_SEPARATOR . APPLICATION_ROOT . '/application/models' . 
