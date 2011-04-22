@@ -4,6 +4,7 @@
  */
 class Entry extends Zend_Db_Table {
     protected $_name = 'entry';
+    protected $_rowClass = 'EntryDetail';
 
     /*
      * Fetch latest entries

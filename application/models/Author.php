@@ -1,8 +1,7 @@
 <?php
 /*
- * Author model
+ * Author 
  */
-class Author extends Zend_Db_Table {
-    protected $_name = 'Author'
+class Author extends Zend_Db_Table_Row_Abstract {
 }
 ?>
