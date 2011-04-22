@@ -5,6 +5,13 @@
 class Entry extends Zend_Db_Table {
     protected $_name = 'entry';
     protected $_rowClass = 'EntryDetail';
+    protected $_referenceMap = array(
+        'EntryDetail' => array(
+            'columns' => array('author_id'),
+            'refTableClass' => 'Authors',
+            'refColumns' => array('id')
+        )
+    );
 
     /*
      * Fetch latest entries

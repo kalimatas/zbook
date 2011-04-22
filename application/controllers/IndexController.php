@@ -13,7 +13,19 @@ class IndexController extends Zend_Controller_Action {
         echo '----------------------------------------';
 
         $authors = new Authors();
-        $authors->insertAuthor();
+        $me = $authors->find(1)->current();
+        echo '<h2>'.$me->name().'</h2>';
+
+        $meAgain = $authors->fetchRow('id = 3');
+        $pubs = $meAgain->findDependentRowset('Entry')->toArray();
+        Zend_Debug::dump($pubs);
+    }
+
+    public function __get($key) {
+        if (method_exists($this, $key)) {
+            return $this->$key();
+        } 
+        return parent::__get($key);
     }
 }
 
