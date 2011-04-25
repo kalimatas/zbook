@@ -43,6 +43,55 @@ INSERT INTO `Author` VALUES (1,'kalimatas','Guz Alex','kalimatas@gmail.com','5f4
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Tags`
+--
+
+DROP TABLE IF EXISTS `Tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Tags`
+--
+
+LOCK TABLES `Tags` WRITE;
+/*!40000 ALTER TABLE `Tags` DISABLE KEYS */;
+INSERT INTO `Tags` VALUES (1,'Test tag 1'),(2,'Test tag 2'),(3,'Test tag 3');
+/*!40000 ALTER TABLE `Tags` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TagsLinks`
+--
+
+DROP TABLE IF EXISTS `TagsLinks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `TagsLinks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tagID` int(11) NOT NULL,
+  `entryID` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TagsLinks`
+--
+
+LOCK TABLES `TagsLinks` WRITE;
+/*!40000 ALTER TABLE `TagsLinks` DISABLE KEYS */;
+INSERT INTO `TagsLinks` VALUES (1,1,2),(2,1,3),(3,1,4),(4,2,10),(5,2,11);
+/*!40000 ALTER TABLE `TagsLinks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `entry`
 --
 
@@ -79,4 +128,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-04-22 18:11:38
+-- Dump completed on 2011-04-25 17:48:53

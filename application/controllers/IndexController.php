@@ -18,7 +18,13 @@ class IndexController extends Zend_Controller_Action {
 
         $meAgain = $authors->fetchRow('id = 3');
         $pubs = $meAgain->findDependentRowset('Entry')->toArray();
-        Zend_Debug::dump($pubs);
+        //Zend_Debug::dump($pubs);
+
+        // list of entries by tag "Test tag 1"
+        $tags = new Tags();
+        $firstTag = $tags->fetchRow('id = 2');
+        $tagEntries = $firstTag->findManyToManyRowset('Entry', 'TagsLinks')->toArray();
+        Zend_Debug::dump($tagEntries);
     }
 
     public function __get($key) {

@@ -5,6 +5,7 @@
 class Entry extends Zend_Db_Table {
     protected $_name = 'entry';
     protected $_rowClass = 'EntryDetail';
+    protected $_dependentTables = array('TagsLinks');
     protected $_referenceMap = array(
         'EntryDetail' => array(
             'columns' => array('author_id'),
