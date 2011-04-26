@@ -2,16 +2,10 @@
 
 class IndexController extends Zend_Controller_Action {
     public function init() {
+        //$this->_helper->layout->setLayout('default2');
     }
 
-    public function indexAction() {
-        $entries = new Entry();
-        //Zend_Debug::dump($entries->fetchAll()->count());
-        //echo '----------------------------------------';
-        //$result = $entries->fetchLatest();
-        //Zend_Debug::dump($result);
-        echo '----------------------------------------';
-
+    public function testAction() {
         $authors = new Authors();
         $me = $authors->find(1)->current();
         echo '<h2>'.$me->name().'</h2>';
@@ -25,6 +19,15 @@ class IndexController extends Zend_Controller_Action {
         $firstTag = $tags->fetchRow('id = 2');
         $tagEntries = $firstTag->findManyToManyRowset('Entry', 'TagsLinks')->toArray();
         Zend_Debug::dump($tagEntries);
+    }
+
+    public function indexAction() {
+        $entries = new Entry();
+        $result = $entries->fetchLatest(6);
+        if ($result) {
+            $this->view->entries = $result;
+        }
+
     }
 
     public function __get($key) {

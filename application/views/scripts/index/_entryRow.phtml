@@ -1,0 +1,18 @@
+<?php
+$url = '#';
+?>
+<article>
+    <header>
+        <h2><a href="<?php echo $url; ?>">
+            <?php echo $this->escape($this->title); ?></a></h2>
+        <p>Posted on <time datetime="<?php echo date('Y-m-d', strtotime($this->date)); ?>">
+            <?php echo date('d.m.Y, H:i', strtotime($this->date)); ?></time>
+        </p>
+    </header>
+    <div>
+        <?php echo $this->escape($this->announce); ?>
+    </div>
+    <footer>
+        <address>By <?php echo $this->escape($this->author_id); ?></address>
+    </footer>
+</article>
