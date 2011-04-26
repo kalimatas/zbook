@@ -1,27 +1,5 @@
-<article>
-    <header>
-        <h2>One day</h2>
-        <p>Posted on <time datetime="2011-20-04">Wednesday, 20 April 2011</time></p>
-    </header>
-    <div>
-        <p>Some text.</p>
-        <p>Second line here.</p>
-    </div>
-    <footer>
-        <address>By kalimatas</address>
-    </footer>
-</article>
-
-<article>
-    <header>
-        <h2>One day</h2>
-        <p>Posted on <time datetime="2011-20-04">Wednesday, 20 April 2011</time></p>
-    </header>
-    <div>
-        <p>Some text.</p>
-        <p>Second line here.</p>
-    </div>
-    <footer>
-        <address>By kalimatas</address>
-    </footer>
-</article>
+<?php
+if (count($this->entries)) {
+    echo $this->partialLoop('index/_entryRow.phtml', $this->entries);
+}
+?>
