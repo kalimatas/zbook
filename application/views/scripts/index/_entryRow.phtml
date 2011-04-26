@@ -1,6 +1,9 @@
 <?php
-$url = '#';
+$url = $this->url(array('controller' => 'entry',
+        'action' => 'entryDetail', 
+        'id' => $this->id));
 ?>
+
 <article>
     <header>
         <h2><a href="<?php echo $url; ?>">
