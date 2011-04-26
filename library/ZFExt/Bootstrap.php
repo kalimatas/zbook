@@ -5,6 +5,9 @@
 
 class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     
+    /*
+     * Set View
+     */
     protected function _initView() {
         $options = $this->getOptions();
         //Zend_Debug::dump($options);
@@ -35,6 +38,9 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         return $view;
     }
 
+    /*
+     * Set Db
+     */
     protected function _initDb() {
         $resource = $this->getPluginResource('db');
         $db = $resource->getDbAdapter();
@@ -43,6 +49,46 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         Zend_Registry::set('db', $db);
     }
 
+    /*
+     * Set Navigation
+     */
+    protected function _initNavigation() {
+        $this->bootstrap('View');
+        if ($this->hasResource('View')) {
+            $view = $this->getResource('View');
+        }
+
+        $pages = array(
+            array(
+                'controller' => 'index',
+                'label' => 'Home'
+            ),
+            array(
+                'controller' => 'about',
+                'label' => 'About',
+                'pages' => array(
+                    array(
+                        'controller' => 'about',
+                        'action' => 'contact',
+                        'label' => 'Contact'
+                    )
+                )
+            ),
+            array(
+                'controller' => 'sitemap',
+                'label' => 'Sitemap'
+            )
+        );
+
+        $container = new Zend_Navigation($pages);
+        $view->menu = $container;
+
+        return $container;
+    }
+
+    /*
+     * Set FrontController
+     */
     protected function _initModifiedFrontController() {
         $options = $this->getOptions();
         if (!isset($options['resources']['modifiedFrontController']['contentType'])) {
