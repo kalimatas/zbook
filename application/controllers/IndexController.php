@@ -8,7 +8,7 @@ class IndexController extends Zend_Controller_Action {
     public function testAction() {
         $authors = new Authors();
         $me = $authors->find(1)->current();
-        echo '<h2>'.$me->name().'</h2>';
+        echo '<span>'.$me->name().'</span>';
 
         $meAgain = $authors->fetchRow('id = 3');
         $pubs = $meAgain->findDependentRowset('Entry')->toArray();
@@ -18,7 +18,7 @@ class IndexController extends Zend_Controller_Action {
         $tags = new Tags();
         $firstTag = $tags->fetchRow('id = 2');
         $tagEntries = $firstTag->findManyToManyRowset('Entry', 'TagsLinks')->toArray();
-        Zend_Debug::dump($tagEntries);
+        //Zend_Debug::dump($tagEntries);
     }
 
     public function indexAction() {

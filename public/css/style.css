@@ -6,7 +6,7 @@ body {
     margin: 0;
 }
 a:link, a:visited {
-    color: blue;
+    color: blue !important;
     text-decoration: none;
 }
 a:hover {
@@ -84,7 +84,7 @@ header#hd nav li {
     margin: 0 2px 0 2px;
 }
 header#hd nav a:link, nav a:visited {
-    color: white;
+    color: white !important;
     display: inline-block;
     height: 20px;
     padding: 5px 1.5em;
@@ -94,6 +94,11 @@ header#hd nav a:link, nav a:visited {
 header#hd nav a:hover {
     text-decoration: underline;
 }
+header#hd nav li.active a {
+    color: #00c0ff !important;
+    font-weight: bold;
+}
+
 
 /**
  * Vertical Sidebar Menu/Links
@@ -112,9 +117,6 @@ section nav ul li
     display: inline;
     margin: 0;
 }
-ul.leftnav li a{
-    color: blue;
-}
 
 /**
  * Article related styling
@@ -130,4 +132,15 @@ article header h2 {
 }
 article header p {
     font-style: italic;
+}
+ul.mysubmenu li{
+    float: none;
+    display: block;
+    padding: 4px 0;
+}
+ul.mysubmenu li a{
+    color: blue !important;
+}
+ul.mysubmenu li.active a{
+    color: red !important;
 }

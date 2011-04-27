@@ -16,13 +16,7 @@
 
 <header id="hd" role="banner">
     <nav role="navigation">
-    	<ul>
-    		<li> <a href="/">Home</a> </li>
-    		<li> <a href="#">About</a> </li>
-    		<li> <a href="#">Some link</a> </li>
-    		<li> <a href="#">Projects</a> </li>
-    		<li> <a href="#">Contact</a> </li>
-    	</ul>
+        <?php echo $this->navigation()->menu($this->menu)->setMaxDepth(0); ?>
     </nav>
     <hgroup>
         <h1><a href="/">ZF Blog</a></h1>
@@ -37,20 +31,29 @@
     <div id="yui-main">
         <div class="yui-b" role="main">
             <section id="content" class="yui-g">
+            <?php echo $this->navigation()->breadcrumbs($this->menu); ?>
             <?php echo $this->layout()->content; ?>
             </section>
         </div>
     </div>
     <section class="yui-b">
         <nav role="navigation" aria-labelledby="leftnav-label">
-            <h2 id="leftnav-label">External Links</h2>
-            <ul class="leftnav">
-                <li><a href="#">Survive The Deep End</a></li>
-                <li><a href="#">Zend Framework</a></li>
-                <li><a href="#">Planet-PHP</a></li>
-                <li><a href="#">I'm on Twitter!</a></li>
-            </ul>
+            <h2 id="leftnav-label">Submenu</h2>
+            <?php 
+            // submenu
+            echo $this->navigation()->menu($this->menu)->renderMenu(null, array(
+                'minDepth' => 1,
+                'maxDepth' => 1,
+                'ulClass' => 'mysubmenu',
+                'onlyActiveBranch' => true,
+                'renderParents' => false
+            )); 
+            ?>
         </nav>
+    </section>
+    
+    <section style="clear: both;">
+        <?php echo $this->action('test', 'index'); ?>
     </section>
 
 
