@@ -39,7 +39,16 @@
     <section class="yui-b">
         <nav role="navigation" aria-labelledby="leftnav-label">
             <h2 id="leftnav-label">Submenu</h2>
-            <?php echo $this->navigation()->menu($this->menu)->setOnlyActiveBranch(true); ?>
+            <?php 
+            // submenu
+            echo $this->navigation()->menu($this->menu)->renderMenu(null, array(
+                'minDepth' => 1,
+                'maxDepth' => 1,
+                'ulClass' => 'mysubmenu',
+                'onlyActiveBranch' => true,
+                'renderParents' => false
+            )); 
+            ?>
         </nav>
     </section>
     

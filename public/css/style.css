@@ -133,11 +133,14 @@ article header h2 {
 article header p {
     font-style: italic;
 }
-ul.navigation li{
+ul.mysubmenu li{
     float: none;
     display: block;
     padding: 4px 0;
 }
-ul.navigation li a{
-    color: blue;
+ul.mysubmenu li a{
+    color: blue !important;
+}
+ul.mysubmenu li.active a{
+    color: red !important;
 }
