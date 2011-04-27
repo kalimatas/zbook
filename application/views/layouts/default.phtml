@@ -15,8 +15,11 @@
 <body>
 
 <header id="hd" role="banner">
-    <nav role="navigation">
+    <nav role="navigation" style="position: relative;">
         <?php echo $this->navigation()->menu($this->menu)->setMaxDepth(0); ?>
+        <div style="font-size: 11px; position: absolute; right: 350px; top: 6px; color: #00C0FF;">
+            <?php echo $this->loggedInUser(); ?>
+        </div>
     </nav>
     <hgroup>
         <h1><a href="/">ZF Blog</a></h1>

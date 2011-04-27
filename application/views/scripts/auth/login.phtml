@@ -1,0 +1,17 @@
+<h1>Login</h1>
+
+<?php
+if (count($this->actionErrors)) {
+    echo "<p style='color: red;'>".$this->actionErrors[0]."</p>";
+}
+?>
+
+<form method="POST" action="<?php echo $this->url(array('controller' => 'auth', 'action' => 'identify')); ?>">
+    <label>Login: </label><br />
+    <input type="text" name="login" value="" /> <br />
+    
+    <label>Password: </label><br />
+    <input type="password" name="password" value="" /> <br /><br />
+
+    <input type="submit" name="submit" value="Login" /> 
+</form>
