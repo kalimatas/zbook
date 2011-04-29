@@ -50,6 +50,29 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     }
 
     /*
+     * Set Acl
+     */
+    protected function _initAcl() {
+        $options = $this->getOptions();
+        $config = $options['acl']['roles'];
+
+        if (isset($config)) {
+            $auth = Zend_Auth::getInstance();
+            // определяем роль по-умолчанию
+            $role = ($auth->hasIdentity() && !empty($auth->getIdentity()->role)) ? $auth->getIdentity()->role : 'guest';
+            $acl = new ZFExt_Acl();
+            $acl->_addRoles($config);
+            $acl->_configureNavigationAccess();
+
+            // привязываем Acl к Navigation
+            Zend_View_Helper_Navigation_HelperAbstract::setDefaultAcl($acl);
+            Zend_View_Helper_Navigation_HelperAbstract::setDefaultRole($role);
+        }
+
+        return $acl;
+    }
+
+    /*
      * Set Navigation
      */
     protected function _initNavigation() {
@@ -77,6 +100,11 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             array(
                 'controller' => 'sitemap',
                 'label' => 'Sitemap'
+            ),
+            array(
+                'controller' => 'admin',
+                'label' => 'Admin',
+                'resource' => 'admin'
             )
         );
 
