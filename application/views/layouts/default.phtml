@@ -29,38 +29,38 @@
         <h2>Some subheader here.</h2>
     </hgroup>
 
-<div id="left-column">
-    <section class="left-block">
-        <nav role="navigation" aria-labelledby="leftnav-label">
-            <h2 id="leftnav-label">Submenu</h2>
-            <?php 
-            // submenu
-            echo $this->navigation()->menu($this->menu)->renderMenu(null, array(
-                'minDepth' => 1,
-                'maxDepth' => 1,
-                'ulClass' => 'mysubmenu',
-                'onlyActiveBranch' => true,
-                'renderParents' => false
-            )); 
-            ?>
-        </nav>
-    </section>
-    
-    <section class="left-block">
-        <?php echo $this->action('test', 'index'); ?>
-    </section>
-</div>
-
-<div id="right-column">
-    <div role="main">
-        <section id="content" class="yui-g">
-        <?php echo $this->navigation()->breadcrumbs($this->menu); ?>
-        <?php echo $this->layout()->content; ?>
+    <div id="left-column">
+        <section class="left-block">
+            <nav role="navigation" aria-labelledby="leftnav-label">
+                <h2 id="leftnav-label">Submenu</h2>
+                <?php 
+                // submenu
+                echo $this->navigation()->menu($this->menu)->renderMenu(null, array(
+                    'minDepth' => 1,
+                    'maxDepth' => 1,
+                    'ulClass' => 'mysubmenu',
+                    'onlyActiveBranch' => true,
+                    'renderParents' => false
+                )); 
+                ?>
+            </nav>
+        </section>
+        
+        <section class="left-block">
+            <?php echo $this->action('test', 'index'); ?>
         </section>
     </div>
-</div>
 
-<?php echo $this->partial('_footer.phtml');  ?>
+    <div id="right-column">
+        <div role="main">
+            <section id="content" class="yui-g">
+            <?php echo $this->navigation()->breadcrumbs($this->menu); ?>
+            <?php echo $this->layout()->content; ?>
+            </section>
+        </div>
+    </div>
+
+    <?php echo $this->partial('_footer.phtml');  ?>
 
 </div>
 

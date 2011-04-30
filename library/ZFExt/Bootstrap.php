@@ -61,7 +61,7 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             // определяем роль по-умолчанию
             $role = ($auth->hasIdentity() && !empty($auth->getIdentity()->role)) ? $auth->getIdentity()->role : 'guest';
             $acl = new ZFExt_Acl();
-            $acl->_addRoles($config);
+            //$acl->_addRoles($config);
             $acl->_configureNavigationAccess();
 
             // привязываем Acl к Navigation
@@ -89,11 +89,13 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             array(
                 'controller' => 'about',
                 'label' => 'About',
+                'resource' => 'about',
                 'pages' => array(
                     array(
                         'controller' => 'about',
                         'action' => 'contact',
-                        'label' => 'Contact'
+                        'label' => 'Contact',
+                        'resource' => 'contact'
                     )
                 )
             ),

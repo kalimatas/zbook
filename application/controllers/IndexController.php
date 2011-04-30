@@ -1,8 +1,15 @@
 <?php
 
 class IndexController extends Zend_Controller_Action {
+
     public function init() {
-        //$this->_helper->layout->setLayout('default2');
+        $guestActions = array('index');
+        //$guestDenyActions = array('test');
+        $this->_helper->acl->allow('guest', $guestActions);
+        //$this->_helper->_acl->deny('guest', $guestDenyActions);
+
+        $adminActions = array('index','test');
+        $this->_helper->acl->allow('admin', $adminActions);
     }
 
     public function testAction() {
