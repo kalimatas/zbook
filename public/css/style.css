@@ -27,7 +27,11 @@ article, aside, dialog, figure, footer, header, hgroup, nav, section {
  * Page Elements
  */
 header#hd {
-    text-align:center;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 footer#ft {
     text-align: center;
@@ -143,4 +147,15 @@ ul.mysubmenu li a{
 }
 ul.mysubmenu li.active a{
     color: red !important;
+}
+
+div#left-column{
+    float: left;
+    width: 200px;
+}
+div#right-column{
+    margin-left: 200px;
+}
+div#doc{
+    padding-top: 42px;
 }

@@ -23,7 +23,7 @@ class IndexController extends Zend_Controller_Action {
 
     public function indexAction() {
         $entries = new Entry();
-        $result = $entries->fetchLatest(6);
+        $result = $entries->fetchLatest(10);
         if ($result) {
             $this->view->entries = $result;
         }
