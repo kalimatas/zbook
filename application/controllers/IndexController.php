@@ -1,11 +1,24 @@
 <?php
+/*
+ * Index controller
+ */
+class IndexController extends Zend_Controller_Action 
+{
 
-class IndexController extends Zend_Controller_Action {
-    public function init() {
-        //$this->_helper->layout->setLayout('default2');
+    /*
+     * Set permissions
+     */
+    public function init() 
+    {
+        $guestActions = array('index');
+        $this->_helper->acl->allow('guest', $guestActions);
+
+        $adminActions = array('index','test');
+        $this->_helper->acl->allow('admin', $adminActions);
     }
 
-    public function testAction() {
+    public function testAction() 
+    {
         $authors = new Authors();
         $me = $authors->find(1)->current();
         echo '<span>'.$me->name().'</span>';
@@ -21,16 +34,21 @@ class IndexController extends Zend_Controller_Action {
         //Zend_Debug::dump($tagEntries);
     }
 
-    public function indexAction() {
+    /*
+     * Display last entries in blog
+     */
+    public function indexAction() 
+    {
         $entries = new Entry();
-        $result = $entries->fetchLatest(6);
+        $result = $entries->fetchLatest(10);
         if ($result) {
             $this->view->entries = $result;
         }
 
     }
 
-    public function __get($key) {
+    public function __get($key) 
+    {
         if (method_exists($this, $key)) {
             return $this->$key();
         } 

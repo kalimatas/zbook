@@ -21,48 +21,46 @@
             <?php echo $this->loggedInUser(); ?>
         </div>
     </nav>
-    <hgroup>
-        <h1><a href="/">ZF Blog</a></h1>
-        <h2>Some subheader here.</h2>
-    </hgroup>
 </header>
 
 <div id="doc" class="yui-t1">
+    <hgroup style="text-align: center;">
+        <h1><a href="/">ZF Blog</a></h1>
+        <h2>Some subheader here.</h2>
+    </hgroup>
 
+    <div id="left-column">
+        <section class="left-block">
+            <nav role="navigation" aria-labelledby="leftnav-label">
+                <h2 id="leftnav-label">Submenu</h2>
+                <?php 
+                // submenu
+                echo $this->navigation()->menu($this->menu)->renderMenu(null, array(
+                    'minDepth' => 1,
+                    'maxDepth' => 1,
+                    'ulClass' => 'mysubmenu',
+                    'onlyActiveBranch' => true,
+                    'renderParents' => false
+                )); 
+                ?>
+            </nav>
+        </section>
+        
+        <section class="left-block">
+            <?php echo $this->action('test', 'index'); ?>
+        </section>
+    </div>
 
-<div id="bd">
-    <div id="yui-main">
-        <div class="yui-b" role="main">
+    <div id="right-column">
+        <div role="main">
             <section id="content" class="yui-g">
             <?php echo $this->navigation()->breadcrumbs($this->menu); ?>
             <?php echo $this->layout()->content; ?>
             </section>
         </div>
     </div>
-    <section class="yui-b">
-        <nav role="navigation" aria-labelledby="leftnav-label">
-            <h2 id="leftnav-label">Submenu</h2>
-            <?php 
-            // submenu
-            echo $this->navigation()->menu($this->menu)->renderMenu(null, array(
-                'minDepth' => 1,
-                'maxDepth' => 1,
-                'ulClass' => 'mysubmenu',
-                'onlyActiveBranch' => true,
-                'renderParents' => false
-            )); 
-            ?>
-        </nav>
-    </section>
-    
-    <section style="clear: both;">
-        <?php echo $this->action('test', 'index'); ?>
-    </section>
 
-
-</div>
-
-<?php echo $this->partial('_footer.phtml');  ?>
+    <?php echo $this->partial('_footer.phtml');  ?>
 
 </div>
 

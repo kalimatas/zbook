@@ -2,7 +2,8 @@
 /*
  * Author model
  */
-class Author extends Zend_Db_Table {
+class Author extends Zend_Db_Table 
+{
     protected $_name = 'Author'
 }
 ?>

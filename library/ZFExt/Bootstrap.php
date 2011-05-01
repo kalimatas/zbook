@@ -3,14 +3,14 @@
  * Bootstrap class
  */
 
-class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
+class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap 
+{
     
     /*
      * Set View
      */
     protected function _initView() {
         $options = $this->getOptions();
-        //Zend_Debug::dump($options);
         $config = $options['resources']['view'];
         
         if (isset($config)) {
@@ -41,7 +41,8 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     /*
      * Set Db
      */
-    protected function _initDb() {
+    protected function _initDb() 
+    {
         $resource = $this->getPluginResource('db');
         $db = $resource->getDbAdapter();
         Zend_Db_Table_Abstract::setDefaultAdapter($db);
@@ -50,9 +51,32 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     }
 
     /*
+     * Set Acl
+     */
+    protected function _initAcl() 
+    {
+        $options = $this->getOptions();
+        $config = $options['acl']['roles'];
+
+        if (isset($config)) {
+            $auth = Zend_Auth::getInstance();
+            $role = ($auth->hasIdentity() && !empty($auth->getIdentity()->role)) ? $auth->getIdentity()->role : 'guest';
+            $acl = new ZFExt_Acl();
+            $acl->_configureNavigationAccess();
+
+            // привязываем Acl к Navigation
+            Zend_View_Helper_Navigation_HelperAbstract::setDefaultAcl($acl);
+            Zend_View_Helper_Navigation_HelperAbstract::setDefaultRole($role);
+        }
+
+        return $acl;
+    }
+
+    /*
      * Set Navigation
      */
-    protected function _initNavigation() {
+    protected function _initNavigation() 
+    {
         $this->bootstrap('View');
         if ($this->hasResource('View')) {
             $view = $this->getResource('View');
@@ -66,17 +90,24 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             array(
                 'controller' => 'about',
                 'label' => 'About',
+                'resource' => 'about',
                 'pages' => array(
                     array(
                         'controller' => 'about',
                         'action' => 'contact',
-                        'label' => 'Contact'
+                        'label' => 'Contact',
+                        'resource' => 'contact'
                     )
                 )
             ),
             array(
                 'controller' => 'sitemap',
                 'label' => 'Sitemap'
+            ),
+            array(
+                'controller' => 'admin',
+                'label' => 'Admin',
+                'resource' => 'admin'
             )
         );
 
@@ -89,7 +120,8 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     /*
      * Set FrontController
      */
-    protected function _initModifiedFrontController() {
+    protected function _initModifiedFrontController() 
+    {
         $options = $this->getOptions();
         if (!isset($options['resources']['modifiedFrontController']['contentType'])) {
             return;

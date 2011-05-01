@@ -2,9 +2,14 @@
 /*
  * Modified helper
  */
-class ZFExt_View_Helper_IncludeModifiedDate extends Zend_View_Helper_Abstract {
+class ZFExt_View_Helper_IncludeModifiedDate extends Zend_View_Helper_Abstract 
+{
     
-    public function includeModifiedDate($uri) {
+    /*
+     * Add timestamp to static files
+     */
+    public function includeModifiedDate($uri) 
+    {
         $parts = parse_url($uri);
         $root = getcwd();
         $mtime = filemtime($root . $parts['path']);

@@ -28,6 +28,7 @@ CREATE TABLE `Author` (
   `fullname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +39,7 @@ CREATE TABLE `Author` (
 
 LOCK TABLES `Author` WRITE;
 /*!40000 ALTER TABLE `Author` DISABLE KEYS */;
-INSERT INTO `Author` VALUES (1,'kalimatas','Guz Alex','kalimatas@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99'),(3,'kohutapu','Another user','a.guz13@yahoo.com','5f4dcc3b5aa765d61d8327deb882cf99');
+INSERT INTO `Author` VALUES (1,'kalimatas','Guz Alex','kalimatas@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99','admin'),(3,'kohutapu','Another user','a.guz13@yahoo.com','5f4dcc3b5aa765d61d8327deb882cf99','');
 /*!40000 ALTER TABLE `Author` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,4 +129,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-04-25 17:48:53
+-- Dump completed on 2011-04-29 13:12:24
