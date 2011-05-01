@@ -2,7 +2,8 @@
 /*
  * Entry model
  */
-class Entry extends Zend_Db_Table {
+class Entry extends Zend_Db_Table 
+{
     protected $_name = 'entry';
     protected $_rowClass = 'EntryDetail';
     protected $_dependentTables = array('TagsLinks');
@@ -17,7 +18,8 @@ class Entry extends Zend_Db_Table {
     /*
      * Fetch latest entries
      */
-    public function fetchLatest($count = 10) {
+    public function fetchLatest($count = 10) 
+    {
         $db = Zend_Registry::get('db');
         //$select = new Zend_Db_Select($db);
         //$select = $db->select();

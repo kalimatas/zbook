@@ -2,25 +2,39 @@
 /*
  * AuthController
  */
-class AuthController extends Zend_Controller_Action {
-    public function indexAction() {
+class AuthController extends Zend_Controller_Action 
+{
+    /*
+     * Forward to login action
+     */
+    public function indexAction() 
+    {
         $this->_forward('login');
     }
 
-    public function loginAction() {
+    /*
+     * Login form
+     */
+    public function loginAction() 
+    {
         // Get flashed message
         $flashMessenger = $this->_helper->FlashMessenger;
         $flashMessenger->setNamespace('actionErrors');
         $this->view->actionErrors = $flashMessenger->getMessages();
     }
 
-    public function logoutAction() {
+    /*
+     * Clear identity
+     */
+    public function logoutAction() 
+    {
         $auth = Zend_Auth::getInstance();
         $auth->clearIdentity();
         $this->_redirect('/');
     }
 
-    public function identifyAction() {
+    public function identifyAction() 
+    {
         // checks for POST
         if ($this->_request->isPost()) {
             $formData = $this->_request->getParams();
@@ -49,7 +63,8 @@ class AuthController extends Zend_Controller_Action {
      * Get AuthAdapter
      * @param array $formData Data
      */
-    public function _getAuthAdapter($formData) {
+    public function _getAuthAdapter($formData) 
+    {
         $db = Zend_Registry::get('db');
 
         $authAdapter = new Zend_Auth_Adapter_DbTable($db);
@@ -68,7 +83,8 @@ class AuthController extends Zend_Controller_Action {
      * Flash message
      * @param str $message Message
      */
-    public function _flashMessage($message) {
+    public function _flashMessage($message) 
+    {
         $flashMessenger = $this->_helper->FlashMessenger;
         $flashMessenger->setNamespace('actionErrors');
         $flashMessenger->addMessage($message);

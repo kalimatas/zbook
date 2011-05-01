@@ -1,8 +1,12 @@
 <?php
+/*
+ * Display Error
+ */
+class ErrorController extends Zend_Controller_Action 
+{
 
-class ErrorController extends Zend_Controller_Action {
-
-    public function errorAction() {
+    public function errorAction() 
+    {
         $this->view->headTitle()->append('error');
         $errors = $this->_getParam('error_handler');
         echo $errors->exception;
@@ -35,7 +39,8 @@ class ErrorController extends Zend_Controller_Action {
         $this->view->request = $errors->request;
     }
 
-    public function getLog() {
+    public function getLog() 
+    {
         $bootstrap = $this->getInvokeArg('bootstrap');
         if (!$bootstrap->hasPluginResource('Log')) {
             return false;

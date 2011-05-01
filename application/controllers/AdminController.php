@@ -2,12 +2,15 @@
 /*
  * Admin 
  */
-class AdminController extends Zend_Controller_Action {
-    public function indexAction() {
+class AdminController extends Zend_Controller_Action 
+{
+    public function indexAction() 
+    {
 
     }
 
-    public function setupAction() {
+    public function setupAction() 
+    {
 
     }
 }

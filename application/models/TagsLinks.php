@@ -2,7 +2,8 @@
 /*
  * TagsLinks
  */
-class TagsLinks extends Zend_Db_Table_Abstract {
+class TagsLinks extends Zend_Db_Table_Abstract 
+{
     protected $_name = 'TagsLinks';    
     protected $_referenceMap = array(
         'Entry' => array(

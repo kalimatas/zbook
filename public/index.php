@@ -27,15 +27,6 @@
     $autoloader = Zend_Loader_Autoloader::getInstance();
     $autoloader->setFallbackAutoloader(true); 
 
-    function autoload($class) {
-        include str_replace('_','/', $class) . '.php';
-    }
-
-    //$autoloader->setDefaultAutoloader(create_function('$class', 
-        //"include str_replace('_','/', \$class) . '.php';"));
-    
-    //$autoloader->setDefaultAutoloader('autoload');
-
     $application = new Zend_Application(
         APPLICATION_ENV, 
         APPLICATION_ROOT . '/config/application.ini'

@@ -2,6 +2,8 @@
 /*
  * Entry Detail 
  */
-class EntryDetail extends Zend_Db_Table_Row_Abstract {
+class EntryDetail extends Zend_Db_Table_Row_Abstract 
+{
+
 }
 ?>
