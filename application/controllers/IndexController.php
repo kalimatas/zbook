@@ -58,7 +58,19 @@ class IndexController extends Zend_Controller_Action
     public function indexAction() 
     {
         $entries = new Entry();
-        $result = $entries->fetchLatest(10);
+        // test memcached
+        if (extension_loaded('memcache')) {
+            $mem = new Memcache();
+            $mem->addServer('localhost', 11211);
+            $result = $mem->get('indexContent');
+            if (!$result) {
+                $result = $entries->fetchLatest(10);
+                $mem->set('indexContent', $result, 0, 4);
+            }
+        } else {
+            $result = $entries->fetchLatest(10);
+        }
+
         if ($result) {
             $this->view->entries = $result;
         }
