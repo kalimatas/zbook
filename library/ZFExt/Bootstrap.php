@@ -107,7 +107,14 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             array(
                 'controller' => 'admin',
                 'label' => 'Admin',
-                'resource' => 'admin'
+                'resource' => 'admin',
+                'pages' => array(
+                    array(
+                        'controller' => 'index',
+                        'action' => 'info',
+                        'label' => 'Info'
+                    )
+                )
             )
         );
 

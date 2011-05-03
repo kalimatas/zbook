@@ -10,11 +10,13 @@ class IndexController extends Zend_Controller_Action
      */
     public function init() 
     {
-        $guestActions = array('index','ajax');
-        $this->_helper->acl->allow('guest', $guestActions);
+        $guestActions = array('index','ajax','info');
+        //$this->_helper->acl->allow('guest', $guestActions);
+        $this->_helper->acl->allow(null);
 
-        $adminActions = array('index','test','ajax');
-        $this->_helper->acl->allow('admin', $adminActions);
+        $adminActions = array('index','test','ajax','info');
+        //$this->_helper->acl->allow('admin', $adminActions);
+        //$this->_helper->acl->allow(null);
 
         $this->view->baseUrl = $this->getRequest()->getBaseUrl();
         // set ajax action
@@ -61,6 +63,14 @@ class IndexController extends Zend_Controller_Action
             $this->view->entries = $result;
         }
 
+    }
+
+    /*
+     * phpinfo
+     */
+    public function infoAction()
+    {
+        $this->_helper->layout->disableLayout();
     }
 
     public function __get($key) 

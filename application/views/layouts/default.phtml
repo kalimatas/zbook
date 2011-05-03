@@ -1,3 +1,4 @@
+<?php $start = microtime(true); ?>
 <?php echo $this->doctype() . "\n" ?>
 <html>
 <head>
@@ -66,6 +67,10 @@
 
 </div>
 
+<?php 
+    $end = microtime(true); 
+    echo "<!-- Time: ".($end - $start)." -->";
+?>
 
 </body>
 </html>
