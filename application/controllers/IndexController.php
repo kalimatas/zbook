@@ -10,11 +10,27 @@ class IndexController extends Zend_Controller_Action
      */
     public function init() 
     {
-        $guestActions = array('index');
+        $guestActions = array('index','ajax');
         $this->_helper->acl->allow('guest', $guestActions);
 
-        $adminActions = array('index','test');
+        $adminActions = array('index','test','ajax');
         $this->_helper->acl->allow('admin', $adminActions);
+
+        $this->view->baseUrl = $this->getRequest()->getBaseUrl();
+        // set ajax action
+        $ajaxContent = $this->_helper->getHelper('AjaxContext');
+        $ajaxContent->addActionContext('ajax', 'html');
+        $ajaxContent->initContext();
+    }
+
+    /*
+     * Test ajax action
+     */
+    public function ajaxAction() 
+    {
+        $ajaxTest = new AjaxTest();
+        $param = trim($this->getRequest()->getParam('name'));
+        $this->view->result = $ajaxTest->formResponse($param ? $param : 'default');
     }
 
     public function testAction() 
