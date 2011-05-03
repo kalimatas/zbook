@@ -1,3 +1,4 @@
+<?php $start = microtime(true); ?>
 <?php echo $this->doctype() . "\n" ?>
 <html>
 <head>
@@ -8,7 +9,9 @@
          ->appendStylesheet('http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css')
          ->appendStylesheet('http://yui.yahooapis.com/2.7.0/build/base/base-min.css')
          ->appendStylesheet($this->includeModifiedDate('/css/style.css')) . "\n";
-    echo $this->headScript()->prependFile('http://html5shiv.googlecode.com/svn/trunk/html5.js','text/javascript',array('conditional'=>'IE')). "\n";
+    echo $this->headScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js')
+         ->appendFile($this->includeModifiedDate('/js/ajax.js'))
+         ->prependFile('http://html5shiv.googlecode.com/svn/trunk/html5.js','text/javascript',array('conditional'=>'IE')). "\n";
 ?>
 </head>
 
@@ -64,6 +67,10 @@
 
 </div>
 
+<?php 
+    $end = microtime(true); 
+    echo "<!-- Time: ".($end - $start)." -->";
+?>
 
 </body>
 </html>

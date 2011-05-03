@@ -10,11 +10,29 @@ class IndexController extends Zend_Controller_Action
      */
     public function init() 
     {
-        $guestActions = array('index');
-        $this->_helper->acl->allow('guest', $guestActions);
+        $guestActions = array('index','ajax','info');
+        //$this->_helper->acl->allow('guest', $guestActions);
+        $this->_helper->acl->allow(null);
 
-        $adminActions = array('index','test');
-        $this->_helper->acl->allow('admin', $adminActions);
+        $adminActions = array('index','test','ajax','info');
+        //$this->_helper->acl->allow('admin', $adminActions);
+        //$this->_helper->acl->allow(null);
+
+        $this->view->baseUrl = $this->getRequest()->getBaseUrl();
+        // set ajax action
+        $ajaxContent = $this->_helper->getHelper('AjaxContext');
+        $ajaxContent->addActionContext('ajax', 'html');
+        $ajaxContent->initContext();
+    }
+
+    /*
+     * Test ajax action
+     */
+    public function ajaxAction() 
+    {
+        $ajaxTest = new AjaxTest();
+        $param = trim($this->getRequest()->getParam('name'));
+        $this->view->result = $ajaxTest->formResponse($param ? $param : 'default');
     }
 
     public function testAction() 
@@ -40,11 +58,31 @@ class IndexController extends Zend_Controller_Action
     public function indexAction() 
     {
         $entries = new Entry();
-        $result = $entries->fetchLatest(10);
+        // test memcached
+        if (extension_loaded('memcache')) {
+            $mem = new Memcache();
+            $mem->addServer('localhost', 11211);
+            $result = $mem->get('indexContent');
+            if (!$result) {
+                $result = $entries->fetchLatest(10);
+                $mem->set('indexContent', $result, 0, 4);
+            }
+        } else {
+            $result = $entries->fetchLatest(10);
+        }
+
         if ($result) {
             $this->view->entries = $result;
         }
 
+    }
+
+    /*
+     * phpinfo
+     */
+    public function infoAction()
+    {
+        $this->_helper->layout->disableLayout();
     }
 
     public function __get($key) 
