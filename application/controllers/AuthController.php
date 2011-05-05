@@ -9,7 +9,29 @@ class AuthController extends Zend_Controller_Action
      */
     public function indexAction() 
     {
-        $this->_forward('login');
+        if (null == Zend_Auth::getInstance()->getIdentity()) {
+            $this->_forward('form');
+        }
+    }
+
+    public function formAction() 
+    {
+        $form = new LoginForm('/auth/form/');
+        $this->view->formResponse = 'Some response';
+        if ($this->_request->isPost()) {
+            if ($form->isValid($this->_request->getParams())) {
+                $authAdapter = $form->login->getValidator('Authorise')
+                                           ->getAuthAdapter();
+
+                $data = $authAdapter->getResultRowObject(null, 'password');
+                $auth = Zend_Auth::getInstance();
+                $auth->getStorage()->write($data);
+                $this->_redirect($this->_redirectUrl);
+            } else {
+                $this->view->formResponse = 'Some problem: ';
+            }
+        } 
+        $this->view->form = $form;
     }
 
     /*
