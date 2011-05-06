@@ -52,7 +52,18 @@ class Entry extends Zend_Db_Table
         //$this->insert($data);
         //$this->delete($this->getAdapter()->quoteInto('id = ?', 1));
 
-        $entries = $this->fetchAll(null, 'date DESC', $count);
+        $select = $this->select()
+            ->setIntegrityCheck(false)
+            ->from(array('main' => $this->_name), 
+                   array('id', 'title', 'date', 'announce'))
+            ->join(array('u' => 'Author'), 
+                   'u.id = main.author_id',
+                   array('login'))
+            ->order('main.date DESC')
+            ->limit($count);
+
+        $entries = $this->fetchAll($select);
+        //$entries = $this->fetchAll(null, 'date DESC', $count);
         return $entries->toArray();
     }
 }

@@ -45,6 +45,7 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $resource = $this->getPluginResource('db');
         $db = $resource->getDbAdapter();
+        $db->getProfiler()->setEnabled(true);
         Zend_Db_Table_Abstract::setDefaultAdapter($db);
 
         Zend_Registry::set('db', $db);
