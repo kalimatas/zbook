@@ -64,15 +64,21 @@ class IndexController extends Zend_Controller_Action
             $mem->addServer('localhost', 11211);
             $result = $mem->get('indexContent');
             if (!$result) {
-                $result = $entries->fetchLatest(10);
+                $result = $entries->fetchLatest(100);
                 $mem->set('indexContent', $result, 0, 4);
             }
         } else {
-            $result = $entries->fetchLatest(10);
+            $result = $entries->fetchLatest(100);
         }
 
         if ($result) {
             $this->view->entries = $result;
+            // Zend_Paginator
+            $page = $this->_request->getParam('page', 1);
+            $paginator = Zend_Paginator::factory($result);
+            $paginator->setItemCountPerPage(4);
+            $paginator->setCurrentPageNumber($page);
+            $this->view->paginator = $paginator;
         }
 
     }
