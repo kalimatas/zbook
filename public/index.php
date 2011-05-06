@@ -21,6 +21,7 @@
     set_include_path(APPLICATION_ROOT . '/library' . 
         PATH_SEPARATOR . APPLICATION_ROOT . '/vendor' . 
         PATH_SEPARATOR . APPLICATION_ROOT . '/application/models' . 
+        PATH_SEPARATOR . APPLICATION_ROOT . '/application/forms' . 
         PATH_SEPARATOR . get_include_path());
 
     require_once 'Zend/Loader/Autoloader.php'; 
