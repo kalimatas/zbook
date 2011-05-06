@@ -1,7 +1,9 @@
 <?php
-$url = $this->url(array('controller' => 'entry',
-        'action' => 'entryDetail', 
-        'id' => $this->id));
+//$url = $this->url(array('controller' => 'entry',
+        //'action' => 'entryDetail', 
+        //'id' => $this->id), '', true);
+
+$url = $this->url(array('id' => $this->id), 'entry', true);
 ?>
 
 <article>

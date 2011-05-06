@@ -146,6 +146,38 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         return $response;
     }
+
+    protected function _initRouter() {
+        $this->bootstrap('FrontController');
+        if ($this->hasResource('FrontController')) {
+            $front = $this->getResource('FrontController');
+        }
+        $router = $front->getRouter();
+        // login
+        $router->addRoute('login', new Zend_Controller_Router_Route_Static(
+            'login',
+            array('controller' => 'auth', 'action' => 'form')
+        ));
+        // logout
+        $router->addRoute('logout', new Zend_Controller_Router_Route_Static(
+            'logout',
+            array('controller' => 'auth', 'action' => 'logout')
+        ));
+        // entry
+        $router->addRoute('entry', new Zend_Controller_Router_Route(
+            'entry/:id',
+            array(
+                'controller' => 'entry',
+                'action' => 'full',
+                'id' => ''
+            ),
+            array(
+                'id' => '\d+'
+            )
+        ));
+        //$router->addConfig(new Zend_Config_Ini(APPLICATION_ROOT . '/config/routes.ini'), 'production', 'routes');
+        
+    }
 }
 
 
