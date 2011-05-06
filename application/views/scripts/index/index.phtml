@@ -2,6 +2,11 @@
 <a href="#" id="getAjaxResponse">Get ajax response.</a><br />
 <?php
 if (count($this->entries)) {
-    echo $this->partialLoop('index/_entryRow.phtml', $this->entries);
+    //echo $this->partialLoop('index/_entryRow.phtml', $this->entries);
 }
+// Zend_Paginator
+if (count($this->paginator)) {
+    echo $this->partialLoop('index/_entryRow.phtml', $this->paginator);
+}
+echo $this->paginationControl($this->paginator, 'Sliding', 'index/_paginator_control.phtml');
 ?>

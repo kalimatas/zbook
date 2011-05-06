@@ -159,3 +159,6 @@ div#right-column{
 div#doc{
     padding-top: 42px;
 }
+div.paginationControl{
+    margin: 20px 0;
+}
