@@ -86,34 +86,40 @@ class ZFExt_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $pages = array(
             array(
                 'controller' => 'index',
-                'label' => 'Home'
+                'label' => 'Home',
+                'route' => 'default'
             ),
             array(
                 'controller' => 'about',
                 'label' => 'About',
                 'resource' => 'about',
+                'route' => 'default',
                 'pages' => array(
                     array(
                         'controller' => 'about',
                         'action' => 'contact',
                         'label' => 'Contact',
-                        'resource' => 'contact'
+                        'resource' => 'contact',
+                        'route' => 'default'
                     )
                 )
             ),
             array(
                 'controller' => 'sitemap',
-                'label' => 'Sitemap'
+                'label' => 'Sitemap',
+                'route' => 'default'
             ),
             array(
                 'controller' => 'admin',
                 'label' => 'Admin',
                 'resource' => 'admin',
+                'route' => 'default',
                 'pages' => array(
                     array(
                         'controller' => 'index',
                         'action' => 'info',
-                        'label' => 'Info'
+                        'label' => 'Info',
+                        'route' => 'default'
                     )
                 )
             )
