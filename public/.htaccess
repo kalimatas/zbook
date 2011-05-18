@@ -1,4 +1,14 @@
 RewriteEngine On
+#RewriteBase /
+
+# Test Rules
+#RewriteRule ^(test) http://google.ru?q=$1 [L,QSA]
+
+#RewriteCond %{HTTP_HOST} ^zbook\.ru$ [NC]
+RewriteRule ^(\d) /index/index/page/$1 [L]
+
+#RewriteRule ^index\/? - [CO=testcookie:value:zbook.ru]
+#RewriteRule a http://google.ru/ [L]
 
 RewriteRule ^(js|css|images)/(.+)\.(.+)\.(js|css|jpg|gif|png)$ $1/$2.$4 [L]
 
