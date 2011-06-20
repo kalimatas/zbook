@@ -4,6 +4,8 @@
 body {
     font-family: Geneva, Verdana, Helvetica, sans-serif;
     margin: 0;
+    background-color: #F0F0F0;
+    color: #333;
 }
 a:link, a:visited {
     color: blue !important;
@@ -158,6 +160,10 @@ div#right-column{
 }
 div#doc{
     padding-top: 42px;
+    background-color: #FAFAFA;
+    -webkit-box-shadow: #cccccc 0 0 10px 0;
+    width: 890px;
+    padding: 30px;
 }
 div.paginationControl{
     margin: 20px 0;
