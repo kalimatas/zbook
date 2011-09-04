@@ -5,7 +5,8 @@
 class Entry extends Zend_Db_Table 
 {
     protected $_name = 'entry';
-    protected $_rowClass = 'EntryDetail';
+    protected $_rowsetClass = 'EntryDetail';
+    protected $_rowClass = 'EntryDetailRow';
     protected $_dependentTables = array('TagsLinks');
     protected $_referenceMap = array(
         'EntryDetail' => array(
@@ -63,8 +64,19 @@ class Entry extends Zend_Db_Table
             ->limit($count);
 
         $entries = $this->fetchAll($select);
+        $data = array();
+
+        if (count($entries)) {
+            $entries->loadTest();
+            foreach ($entries as $i => $entry) {
+                $data[$i]['testData'] = $entry->testData;
+                $data[$i] = array_merge($entry->toArray(), $data[$i]);
+            }
+        }
+        return $data;
+
         //$entries = $this->fetchAll(null, 'date DESC', $count);
-        return $entries->toArray();
+        //return $entries->toArray();
     }
 }
 ?>

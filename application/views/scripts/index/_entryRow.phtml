@@ -19,5 +19,6 @@ $url = $this->url(array('id' => $this->id), 'entry', true);
     </div>
     <footer>
         <address>By <strong><?php echo $this->escape($this->login); ?></strong></address>
+        <address><?php echo count($this->testData) ? $this->escape($this->testData[0]) : ''?></address>
     </footer>
 </article>
